@@ -11,7 +11,7 @@ include_once ("menu.php");
                     <div class="form-group row">
                         <label class="control-label col-md-3">Nombre</label>
                         <div class="col-md-8">
-                            <input class="form-control" type="text" placeholder="Enter full name">
+                            <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Enter full name">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -68,5 +68,32 @@ include_once ("menu.php");
         </div>
     </div>
 
+<?php
+include_once ("scripts.php");
+?>
+//scripts externos
+
+<script type="text/javascript">
+    $('#nombre').on('input', function () {
+        this.value = this.value.replace(/[^a-zA-ZñÑáéíóú ]/g,'');
+    });
+    $('#formRegistroPersona').submit(function (e) {
+        e.preventDefault();
+        var nombres=$('#nombre').val();
+        var formData = {
+        'nombres':nombres
+        }
+        $.ajax({
+            type: "POST",
+            url: '../controlador/RegistroPersonaControlador.php',
+            data: formData,
+            dataType: 'json',
+            encode: true,
+        }).done(function (data) {
+            console.log(data)
+        })
+    })
+
+</script>
 <?php
 include_once ("footer.php");?>
