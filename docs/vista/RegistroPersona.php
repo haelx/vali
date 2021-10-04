@@ -1,87 +1,126 @@
 <?php
-include_once ("cabecera.php");
-include_once ("header.php");
-include_once ("menu.php");
+include_once("cabecera.php");
+include_once("header.php");
+include_once("menu.php");
 ?>
-    <div class="col-md-12">
-        <div class="tile">
-            <form id="formRegistroPersona">
+<div class="col-md-12">
+    <div class="tile">
+        <form id="formRegistroPersona">
             <h3 class="tile-title">Registro Persona</h3>
             <div class="tile-body">
-                    <div class="form-group row">
-                        <label class="control-label col-md-3">Nombre</label>
-                        <div class="col-md-8">
-                            <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Enter full name">
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Nombres</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" id="nombres" name="nombres"
+                               placeholder="Ingrese sus nombres">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Primer Apellido</label>
+                    <div class="col-md-8">
+                        <input id="primerApellido" name="primerApellido" class="form-control" type="text"
+                               placeholder="Ingrese su primer apellido">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Segundo Apellido</label>
+                    <div class="col-md-8">
+                        <input id="segundoApellido" name="segundoApellido" class="form-control" type="text"
+                               placeholder="Ingrese el segundo apellido">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Fecha de Nacimiento</label>
+                    <div class="col-md-8">
+                        <input id="fechaNac" name="fechaNac" class="form-control" type="date"
+                               placeholder="Ingrese la fecha de nacimiento">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Telefono</label>
+                    <div class="col-md-8">
+                        <input id="telefono" name="telefono" class="form-control" type="text" placeholder="Ingrese el telefono fijo">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Celular</label>
+                    <div class="col-md-8">
+                        <input id="celular" name="celular" class="form-control" type="text" placeholder="Ingrese su numero de telefono celular">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Direccion</label>
+                    <div class="col-md-8">
+                        <input id="direccion" name="direccion" class="form-control" type="text" placeholder="Ingrese la direccion de su domicilio">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Correo electronico</label>
+                    <div class="col-md-8">
+                        <input id="email" name="email" class="form-control" type="email" placeholder="Ingrese su correo electronico">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Genero</label>
+                    <div class="col-md-9">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input id="genero" class="form-check-input" value="Varon" type="radio" name="genero">Varon
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input id="genero" class="form-check-input" value="Mujer" type="radio" name="genero">Mujer
+                            </label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="control-label col-md-3">Primer Apellido</label>
-                        <div class="col-md-8">
-                            <input class="form-control col-md-8" type="email" placeholder="Enter email address">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="control-label col-md-3">Segundo Apellido</label>
-                        <div class="col-md-8">
-                            <textarea class="form-control" rows="4" placeholder="Enter your address"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="control-label col-md-3">Gender</label>
-                        <div class="col-md-9">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="gender">Male
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="gender">Female
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="control-label col-md-3">Identity Proof</label>
-                        <div class="col-md-8">
-                            <input class="form-control" type="file">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-8 col-md-offset-3">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox">I accept the terms and conditions
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+                </div>
             </div>
             <div class="tile-footer">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-3">
-                        <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register
+                        </button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i
+                                    class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
                     </div>
                 </div>
             </div>
-            </form>
-        </div>
+        </form>
     </div>
+</div>
 
 <?php
-include_once ("scripts.php");
+include_once("scripts.php");
 ?>
 //scripts externos
 
 <script type="text/javascript">
-    $('#nombre').on('input', function () {
-        this.value = this.value.replace(/[^a-zA-ZñÑáéíóú ]/g,'');
+    //validacion
+    $('#nombres').on('input', function () {
+        this.value = this.value.replace(/[^a-zA-ZñÑáéíóú ]/g, '');
     });
+    //envio del formulario
     $('#formRegistroPersona').submit(function (e) {
         e.preventDefault();
-        var nombres=$('#nombre').val();
+        var nombres = $('#nombres').val();
+        var primerApellido=$('#primerApellido').val();
+        var segundoApellido=$('#segundoApellido').val();
+        var fechaNac=$('#fechaNac').val();
+        var telefono=$('#telefono').val();
+        var celular=$('#celular').val();
+        var direccion=$('#direccion').val();
+        var email=$('#email').val();
+        var genero=$('#genero').val();
         var formData = {
-        'nombres':nombres
+            'nombres': nombres,
+            'primerApellido':primerApellido,
+            'segundoApellido':segundoApellido,
+            'fechaNac':fechaNac,
+            'telefono':telefono,
+            'celular':celular,
+            'direccion':direccion,
+            'email':email,
+            'genero':genero,
         }
         $.ajax({
             type: "POST",
@@ -90,10 +129,14 @@ include_once ("scripts.php");
             dataType: 'json',
             encode: true,
         }).done(function (data) {
+            if(data.Success===1){
+                alert(data.mensaje);
+            }
+
             console.log(data)
         })
     })
 
 </script>
 <?php
-include_once ("footer.php");?>
+include_once("footer.php"); ?>
