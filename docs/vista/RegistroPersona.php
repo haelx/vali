@@ -11,14 +11,14 @@ include_once("menu.php");
                 <div class="form-group row">
                     <label class="control-label col-md-3">Nombres</label>
                     <div class="col-md-8">
-                        <input class="form-control" type="text" id="nombres" name="nombres"
+                        <input required class="form-control" type="text" id="nombres" name="nombres"
                                placeholder="Ingrese sus nombres">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="control-label col-md-3">Primer Apellido</label>
                     <div class="col-md-8">
-                        <input id="primerApellido" name="primerApellido" class="form-control" type="text"
+                        <input required id="primerApellido" name="primerApellido" class="form-control" type="text"
                                placeholder="Ingrese su primer apellido">
                     </div>
                 </div>
@@ -32,7 +32,7 @@ include_once("menu.php");
                 <div class="form-group row">
                     <label class="control-label col-md-3">Fecha de Nacimiento</label>
                     <div class="col-md-8">
-                        <input id="fechaNac" name="fechaNac" class="form-control" type="date"
+                        <input required id="fechaNac" name="fechaNac" class="form-control" type="date"
                                placeholder="Ingrese la fecha de nacimiento">
                     </div>
                 </div>
@@ -45,19 +45,19 @@ include_once("menu.php");
                 <div class="form-group row">
                     <label class="control-label col-md-3">Celular</label>
                     <div class="col-md-8">
-                        <input id="celular" name="celular" class="form-control" type="text" placeholder="Ingrese su numero de telefono celular">
+                        <input required id="celular" name="celular" class="form-control" type="text" placeholder="Ingrese su numero de telefono celular">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="control-label col-md-3">Direccion</label>
                     <div class="col-md-8">
-                        <input id="direccion" name="direccion" class="form-control" type="text" placeholder="Ingrese la direccion de su domicilio">
+                        <input required id="direccion" name="direccion" class="form-control" type="text" placeholder="Ingrese la direccion de su domicilio">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="control-label col-md-3">Correo electronico</label>
                     <div class="col-md-8">
-                        <input id="email" name="email" class="form-control" type="email" placeholder="Ingrese su correo electronico">
+                        <input required id="email" name="email" class="form-control" type="email" placeholder="Ingrese su correo electronico">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -65,12 +65,12 @@ include_once("menu.php");
                     <div class="col-md-9">
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input id="genero" class="form-check-input" value="Varon" type="radio" name="genero">Varon
+                                <input required onchange="Genero(this.value)" id="genero" class="form-check-input" value="Varon" type="radio" name="genero">Varon
                             </label>
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input id="genero" class="form-check-input" value="Mujer" type="radio" name="genero">Mujer
+                                <input required onchange="Genero(this.value)" id="genero" class="form-check-input" value="Mujer" type="radio" name="genero">Mujer
                             </label>
                         </div>
                     </div>
@@ -95,9 +95,22 @@ include_once("scripts.php");
 //scripts externos
 
 <script type="text/javascript">
+
+    var generoGloabal="";
+    function Genero(valor){
+        generoGloabal=valor;
+    }
+
     //validacion
-    $('#nombres').on('input', function () {
+    $('#nombres,#primerApellido,#segundoApellido').on('input', function () {
         this.value = this.value.replace(/[^a-zA-ZñÑáéíóú ]/g, '');
+    });
+    $('#telefono,#celular').on('input', function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+    $('#direccion').on('input', function () {
+        this.value = this.value.replace(/[^0-9#a-zA-ZñÑáéíóú., -]/g, '');
     });
     //envio del formulario
     $('#formRegistroPersona').submit(function (e) {
@@ -110,8 +123,9 @@ include_once("scripts.php");
         var celular=$('#celular').val();
         var direccion=$('#direccion').val();
         var email=$('#email').val();
-        var genero=$('#genero').val();
+        var genero=genero;
         var formData = {
+            'operacion':'registroPersona',
             'nombres': nombres,
             'primerApellido':primerApellido,
             'segundoApellido':segundoApellido,
@@ -120,7 +134,7 @@ include_once("scripts.php");
             'celular':celular,
             'direccion':direccion,
             'email':email,
-            'genero':genero,
+            'genero':generoGloabal,
         }
         $.ajax({
             type: "POST",
@@ -130,10 +144,18 @@ include_once("scripts.php");
             encode: true,
         }).done(function (data) {
             if(data.Success===1){
-                alert(data.mensaje);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Correcto',
+                    text: data.Mensaje,
+                })
+            }else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Opps',
+                    text: data.Mensaje,
+                })
             }
-
-            console.log(data)
         })
     })
 
