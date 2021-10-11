@@ -4,8 +4,8 @@ include_once('header.php');
 include_once('menu.php'); ?>
     <div class="col-md-12">
         <div class="tile">
-            <form id="formRegistroPersona">
-                <h3 class="tile-title">Registro Persona</h3>
+            <form id="formRegistroRol">
+                <h3 class="tile-title">Registro Roles</h3>
                 <div class="tile-body">
                     <div class="form-group row">
                         <label class="control-label col-md-3">Nombre del Rol</label>
@@ -36,11 +36,12 @@ include_once('scripts.php');
             this.value = this.value.replace(/[^a-zA-ZñÑáéíóú ]/g, '');
         });
         //envio del formulario
-        $('#formRegistroPersona').submit(function (e) {
+        $('#formRegistroRol').submit(function (e) {
             e.preventDefault();
             var nombreRol = $('#nombreRol').val();
             var formData = {
                 'nombreRol': nombreRol,
+                'operacion': 'registroNuevoRol'
             }
             $.ajax({
                 type: "POST",
