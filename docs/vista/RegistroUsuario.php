@@ -91,7 +91,7 @@ include_once('scripts.php');
                     'persona': persona,
                     'nick': nick,
                     'clave1': clave1,
-                    'operacion': 'registroNuevoUsuario'
+                    'operacion': 'RegistroNuevoUsuario'
                 }
                 $.ajax({
                     type: "POST",
