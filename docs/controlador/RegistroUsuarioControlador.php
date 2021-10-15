@@ -10,6 +10,7 @@ if($_POST and $_POST['operacion']=='RegistroNuevoUsuario'){
     $per->fijar('nick',$nick);
     $per->registrarNuevoUsuario();
 
+
 //    echo json_encode(array('Success'=>1,'error'=>0,'mensaje'=>'persona registrada correctamente'));
 }
 else{

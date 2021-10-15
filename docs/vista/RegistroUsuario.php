@@ -100,7 +100,8 @@ include_once('scripts.php');
                     dataType: 'json',
                     encode: true,
                 }).done(function (data) {
-                    console.log(data)
+                    sessionStorage.setItem('prueba','prueba de variable');
+                    console.log(sessionStorage.getItem('prueba'));
                 })
             }
 

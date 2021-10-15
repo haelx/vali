@@ -104,6 +104,7 @@ include_once("scripts.php");
     //validacion
     $('#nombres,#primerApellido,#segundoApellido').on('input', function () {
         this.value = this.value.replace(/[^a-zA-ZñÑáéíóú ]/g, '');
+        console.log(sessionStorage.getItem('prueba'));
     });
     $('#telefono,#celular').on('input', function () {
         this.value = this.value.replace(/[^0-9]/g, '');
