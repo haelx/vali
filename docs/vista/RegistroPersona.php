@@ -2,6 +2,7 @@
 include_once("cabecera.php");
 include_once("header.php");
 include_once("menu.php");
+session_start();
 ?>
 <div class="col-md-12">
     <div class="tile">

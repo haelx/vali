@@ -19,11 +19,11 @@
         <h1>Proyecto</h1>
       </div>
       <div class="login-box">
-        <form class="login-form" action="index.html">
+        <form id="login-form" class="login-form">
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Ingreso</h3>
           <div class="form-group">
             <label class="control-label">NOMBRE DE USUARIO</label>
-            <input class="form-control" type="text" placeholder="Email" name="nick" id="nick" autofocus>
+            <input class="form-control" type="text" placeholder="Nick" name="nick" id="nick" autofocus>
           </div>
           <div class="form-group">
             <label class="control-label">CLAVE</label>
@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="form-group btn-container">
-            <button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>INGRESAR</button>
+            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>INGRESAR</button>
           </div>
         </form>
         <form class="forget-form" action="index.html">
@@ -63,6 +63,7 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="js/plugins/pace.min.js"></script>
     <script type="text/javascript">
@@ -71,6 +72,36 @@
       	$('.login-box').toggleClass('flipped');
       	return false;
       });
+      //envio del formulario
+      $('#login-form').submit(function (e) {
+        e.preventDefault();
+        var nick = $('#nick').val();
+        var clave = $('#clave').val();
+        var formData = {
+          'operacion':'InicioLogin',
+          'nick':nick,
+          'clave':clave,
+        }
+        $.ajax({
+          type: "POST",
+          url: '../controlador/InicioControlador.php',
+          data: formData,
+          dataType: 'json',
+          encode: true,
+        }).done(function (data) {
+          if(data.Success===1){
+            console.log(data);
+            sessionStorage.setItem('nombres',data.nombres);
+            window.location.href="dashboard.html";
+          }else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Opps',
+              text: data.Mensaje,
+            })
+          }
+        })
+      })
     </script>
   </body>
 </html>
